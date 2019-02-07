@@ -1,0 +1,3 @@
+#!/bin/sh
+
+java -jar -Dfile.encoding=$PLANTUML_ENCODING /app/plantuml.jar ${@}
