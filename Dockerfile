@@ -1,7 +1,7 @@
 # https://github.com/anapsix/docker-alpine-java
 FROM anapsix/alpine-java:latest 
-ENV http_proxy http://IP:8080
-ENV https_proxy http://IP:8080
+#ENV http_proxy http://IP:8080
+#ENV https_proxy http://IP:8080
 ENV PLANTUML_VERSION 1.2019.0
 ENV PLANTUML_ENCODING en_US.UTF-8
 
