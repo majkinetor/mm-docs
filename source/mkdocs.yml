@@ -1,0 +1,70 @@
+﻿site_name: MM-DOCS
+site_url: http://localhost:8000/user
+site_description: MM-DOCS Test Project
+site_author: majkinetor
+copyright: © majkinetor 2019
+
+theme: 
+    name: material
+    # custom_dir: custom_theme    
+    palette:
+        primary: White
+
+
+extra_css:
+    - _css/extra.css
+
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'    
+   
+extra:
+    search:
+        language: en    # https://squidfunk.github.io/mkdocs-material/getting-started/#language
+
+# https://github.com/Python-Markdown/markdown/wiki/Third-Party-Extensions
+markdown_extensions:
+    # PyMdown extensions: https://python-markdown.github.io/extensions
+    - toc:
+        permalink: ↵
+    - admonition
+    - footnotes
+    - codehilite
+    - meta
+    - abbr
+    - sane_lists
+    - def_list
+    - attr_list
+    - tables
+    
+    # PyMdown Extensions extensions: https://facelessuser.github.io/pymdown-extensions/
+    - pymdownx.betterem:
+        smart_enable: all
+    - pymdownx.caret
+    - pymdownx.critic
+    - pymdownx.inlinehilite
+    - pymdownx.magiclink
+    - pymdownx.mark    
+    - pymdownx.superfences
+    - pymdownx.smartsymbols
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - pymdownx.tilde
+    - pymdownx.keys
+    - pymdownx.details
+    - pymdownx.emoji
+    - pymdownx.arithmatex
+    
+    # Extra extensions
+    - markdown_include.include:
+        base_path: docs  
+    - plantuml
+
+plugins:
+    - exclude:
+        glob: _*
+    
+nav:
+- Home: index.md
+- Demonstration: demo.md
+- About:
+    - Overview: about/overview.md
