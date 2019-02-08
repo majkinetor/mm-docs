@@ -1,3 +1,3 @@
 # Service Overview
 
-This service demonstrates mm-docs system
+This page demonstrates mm-docs system
