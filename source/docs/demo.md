@@ -17,13 +17,14 @@ For more details see:
 
 ## Links, footnotes and comments
 
+### Links
+
 - [I'm an inline-style link](https://www.google.com)
 - [I'm an inline-style link with title](https://www.google.com "Google's Homepage")
 - [I'm a reference-style link][arbitrary reference text]
 - [I'm a relative reference to a repository file](./index)
 - [You can use numbers for reference-style link definitions][1]
 - You can leave a link empty and use the [link text itself]
-- I am a text with footnote[^wiki].
 
 **Magic links and emails:** turned to links as recognized
 
@@ -31,14 +32,34 @@ For more details see:
 - majkinetor@gmail.com
 - www.google.com
 
+
+### Footnotes
+
+- I am a text with a short footnote[^short]
+- I am a text with a long footnote[^long]
+
+
+### Comments
+
 The text contains 2 comments bellow this line which should not be visible.
+
 [comment]: # (Developed using Visual Studio Code with plantuml extension: cinst visualstudiocode; code --install-extension jebbs.plantuml)
 [comment]: # (PlantUML version may influence diagrams. This document is developped with 1.2017.15: cinst plantuml --version 1.2017.15)
+
 
 [arbitrary reference text]: https://www.mozilla.org
 [1]: http://slashdot.org
 [link text itself]: http://www.reddit.com
-[^wiki]: https://en.wikipedia.org/wiki/Note_(typography)
+
+[^short]: https://en.wikipedia.org/wiki/Note_(typography)
+[^long]:   
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
+    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
+    massa, nec semper lorem quam in massa.
+
+    ```
+    code
+    ```
 
 ## Citations
 
@@ -222,6 +243,8 @@ class Program {
 ```
 
 ## Abbreviations
+
+The following are defined in single file, `_inc\abbr.md` and included on each page.
 
 - IT, XML, JSON
 
