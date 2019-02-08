@@ -58,11 +58,17 @@ markdown_extensions:
     - markdown_include.include:
         base_path: docs  
     - plantuml
+    - mdx_custom_span_class
 
 plugins:
+    - search
     - exclude:
-        glob: _*
-    
+        glob: _inc/*
+    - pdf-export:
+        verbose: false
+        media_type: print
+        enabled_if_env: ENABLE_PDF_EXPORT
+        combined: false
 nav:
 - Home: index.md
 - Demonstration: demo.md

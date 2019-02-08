@@ -5,29 +5,9 @@ img {
     margin-right: auto;
 }
 
-.md-footer-copyright__highlight {
-    letter-spacing: .05em;
-}
-
-span.zakon {
-    float: right;
-}
-
 .api {
     border: 2px solid #cccccc;
     padding: .3em
-}
-
-.red {
-    color: red;
-}
-
-.blue {
-    color: blue;
-}
-
-.green {
-    color: green;
 }
 
 .apidetail {
@@ -35,12 +15,22 @@ span.zakon {
     letter-spacing: 0.1em;
 }
 
-.faqno {
-    float: right;
-    position: absolute;
-    top: 0; right: 0;
-    font-size: .8em;
-    font-family: monospace;
-    color: #658065;
-    padding: 2px 2px;
+.background-blue {
+    background-color: blue;
+}
+
+.color-red {
+    color: red;
+}
+
+.color-blue {
+    color: blue;
+}
+
+.color-green {
+    color: green;
+}
+
+.color-yellow {
+    color: yellow;
 }
