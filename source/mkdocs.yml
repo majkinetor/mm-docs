@@ -18,6 +18,9 @@ extra_javascript:
 extra:
     search:
         language: en    # https://squidfunk.github.io/mkdocs-material/getting-started/#language
+    version: 0.1
+    company:
+        name: Acme
 
 # https://github.com/Python-Markdown/markdown/wiki/Third-Party-Extensions
 markdown_extensions:
@@ -66,7 +69,8 @@ plugins:
         verbose: false
         media_type: print
         enabled_if_env: ENABLE_PDF_EXPORT
-        combined: false
+        combined: true
+    - macros
 nav:
 - Home: index.md
 - Demonstration: demo.md

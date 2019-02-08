@@ -282,5 +282,14 @@ The following example uses css from the custom_css file, classes `color-yellow` 
 
 ## Macros
 
+{% set acme = 'Acme Company Ltd' %}
+
+|                                        |                                                         |
+| -------------------------------------- | ------------------------------------------------------- |
+| Variable from config                   | `extra.version = {{version}}`                           |
+| Variable from this page                | `acme = {{acme}}`                                       |
+| Macro (defined in `main.py`)           | `bar(1) = {{ bar(1) }}` - `barbaz(3) = {{ barbaz(3) }}` |
+| Python variable (defined in `main.py`) | `baz = {{ baz }}`                                       |
+| Dictionary variable from config        | `company.name = {{ company.name }}`                     |
 
 {!_inc/footer.md!}

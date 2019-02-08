@@ -12,7 +12,8 @@ ENV PLANTUML_ENCODING=en_US.UTF-8
 RUN apk update
 
 RUN apk add \
-        curl git \                                                                          
+        curl git \
+# weasyprint stuff                                                                
         gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
 
 RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
@@ -29,11 +30,11 @@ RUN pip install mkdocs mkdocs-material plantuml-markdown
 RUN pip install \
     markdown-include \
     mkdocs-exclude  \
+    mkdocs-macros-plugin \
     mkdocs-pdf-export-plugin \
     git+https://github.com/exaroth/mdx_custom_span_class.git
 
 RUN rm /var/cache/apk/*
-
 
 EXPOSE 8000
 WORKDIR /docs/source
