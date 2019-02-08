@@ -282,6 +282,8 @@ The following example uses css from the custom_css file, classes `color-yellow` 
 
 ## Macros
 
+Macros are defined as variables in config file or python functions in `main.py` file.
+
 {% set acme = 'Acme Company Ltd' %}
 
 |                                        |                                                         |

@@ -1,8 +1,10 @@
 ﻿site_name: MM-DOCS
-site_url: http://localhost:8000/user
+site_url: http://localhost:8000
 site_description: MM-DOCS Test Project
 site_author: majkinetor
 copyright: © majkinetor 2019
+
+dev_addr: 0.0.0.0:8000
 
 theme: 
     name: material
