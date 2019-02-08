@@ -270,7 +270,6 @@ The following are defined in single file, `_inc\abbr.md` and included on each pa
     * [ ] Praesent sed risus massa
 * [ ] Nulla vel eros venenatis, imperdiet enim id, faucibus nisi
 
-
 ## Custom span class
 
 Adding custom HTML classes to span elements. 
@@ -280,6 +279,8 @@ Syntax: `!!<class names>|<text to be wrapped>!!`.
 The following example uses css from the custom_css file, classes `color-yellow` and `backgrond-blue`:
 
 - `I love !!color-yellow background-blue|spam!!` - I love !!color-yellow background-blue|spam!!
+
+## Macros
 
 
 {!_inc/footer.md!}
