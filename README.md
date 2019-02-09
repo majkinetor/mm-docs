@@ -33,6 +33,6 @@ DockerStop       {}                     Stop docker docs container if it is runn
 ## Quick start
 
 - Edit [source/mkdocs.yml](source/mkdocs.yml) to set up static site details
-- Add pages in [source/docs] folder
-- Add includables in [source/inc] folder
+- Add pages in [source/docs](source/docs) folder
+- Add includables in [source/inc](source/inc) folder
 - Run `ib Build` to compile static site or `ib Serve` to work on it real time
