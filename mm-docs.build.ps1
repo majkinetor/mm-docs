@@ -5,13 +5,13 @@ param (
 )
 
 Enter-Build { 
-    Write-Host "If you are behind the proxy use http(s)_proxy environment variables"    
+    Write-Host "If you are behind the proxy use http(s)_proxy environment variables"
     $script:ImageName = 'mm-docs'
     $script:ImageFullName = $(if (!$aTag) { $ImageName } else { "${ImageName}:$aTag" })
     $script:ContainerName = 'docs'
 }
 
-# Synopsis: Build docker image, take CLI proxy into account
+# Synopsis: Build docker image
 task DockerBuild {
     $params = @(
         'build'
@@ -23,19 +23,19 @@ task DockerBuild {
     docker $params
 }, DockerListImages
 
-# Synopsis: Run docker image, mount project folder as /docs and take CLI proxy into account
-task DockerRun { docker-run $aCommand -Interactive }
-
-# Synopsis: List docker images for this project
+# Synopsis: List docker images for docs project
 task DockerListImages { docker images $ImageName --format '{{json .}}' | ConvertFrom-Json | Format-Table REPOSITORY,TAG,IMAGE,ID,CREATEDSINCE,SIZE }
 
-# Synopsis: Serve mkdocs project
+# Synopsis: Run docker image interactivelly with given command
+task Run { docker-run $aCommand -Interactive }
+
+# Synopsis: Serve docs project on http://localhost:8000
 task Serve DockerStop, { docker-run mkdocs serve -Detach -Expose }
 
 # Synopsis: Build mkdocs project into static site
 task Build { docker-run mkdocs build }
 
-# Synopsis: Stop docker image if it is running
+# Synopsis: Stop docker docs container if it is running
 task DockerStop {
     $docs = docker ps --format '{{json .}}' | convertfrom-json | ? Names -eq $ContainerName
     if ($docs) { 
