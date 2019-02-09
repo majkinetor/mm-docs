@@ -1,8 +1,8 @@
 # MM-DOCS
 
-This is a docker image that setups and runs documentation system designed for all types of project documentation.
+This is a docker image that setups and runs documentation system designed for all types of project documentation and can be used in cross-platform manner.
 
-The image is built upon:
+The image is built upon Alpine linux and:
 
 - [mkdocs](https://www.mkdocs.org/)<br>
 Documentation system based on python and markdown
@@ -12,6 +12,11 @@ Beautiful mkdos theme with number of extensions
 Markup to make UML diagrams from text files
 
 There is default configuration included with bunch of extensions and plugins.
+
+## Prerequisites
+
+- Requires docker to build and run
+- Build system requires PowerShell
 
 ## Usage
 
@@ -36,3 +41,7 @@ DockerStop       {}                     Stop docker docs container if it is runn
 - Add pages in [source/docs](source/docs) folder
 - Add includables in [source/inc](source/inc) folder
 - Run `ib Build` to compile static site or `ib Serve` to work on it real time
+
+## Docker image
+
+To build the fresh docker image run `ib DockerBuild`. 
