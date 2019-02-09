@@ -32,12 +32,10 @@ For more details see:
 - majkinetor@gmail.com
 - www.google.com
 
-
 ### Footnotes
 
 - I am a text with a short footnote[^short]
 - I am a text with a long footnote[^long]
-
 
 ### Comments
 
@@ -46,7 +44,6 @@ The text contains 2 comments bellow this line which should not be visible.
 [comment]: # (Developed using Visual Studio Code with plantuml extension: cinst visualstudiocode; code --install-extension jebbs.plantuml)
 [comment]: # (PlantUML version may influence diagrams. This document is developped with 1.2017.15: cinst plantuml --version 1.2017.15)
 
-
 [arbitrary reference text]: https://www.mozilla.org
 [1]: http://slashdot.org
 [link text itself]: http://www.reddit.com
@@ -54,7 +51,6 @@ The text contains 2 comments bellow this line which should not be visible.
 [^short]: https://en.wikipedia.org/wiki/Note_(typography)
 [^long]:   
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
     massa, nec semper lorem quam in massa.
 
     ```
@@ -71,6 +67,14 @@ The text contains 2 comments bellow this line which should not be visible.
 > ```
 > Another citation line
 
+## HTML
+
+HTML is allowed without restrictions:
+
+<div style='background-color: #fdd; padding:1em; text-align: center '>
+    <font size="20">Some big text</font>
+</div>
+
 ## Critic and comments
 
 Here is some {--*incorrect*--} Markdown.  I am adding this{++ here++}.  Here is some more {--text that I am removing--}text.  And here is even more {++text that I  am ++}adding.
@@ -80,7 +84,7 @@ Here is some {--*incorrect*--} Markdown.  I am adding this{++ here++}.  Here is 
 
 ~~}Spaces were removed and a paragraph was added.
 
-And here is a comment on {==some text==}{>>This works quite well. I just wanted to comment on it.<<}. Substitutions {~~is~>are~~} great!
+And here is a comment on {==some text==}{>>This works quite well. I just wanted to comment on it.<<}. Substitutions {~~ is~>are~~} great!
 
 General block handling:
 
@@ -278,7 +282,7 @@ Syntax: `!!<class names>|<text to be wrapped>!!`.
 
 The following example uses css from the custom_css file, classes `color-yellow` and `backgrond-blue`:
 
-- `I love !!color-yellow background-blue|spam!!` - I love !!color-yellow background-blue|spam!!
+- `I love !!color-yellow background-blue|cookies!!` - I love !!color-yellow background-blue|cookies!!
 
 ## Macros
 
@@ -294,4 +298,4 @@ Macros are defined as variables in config file or python functions in `main.py` 
 | Python variable (defined in `main.py`) | `baz = {{ baz }}`                                       |
 | Dictionary variable from config        | `company.name = {{ company.name }}`                     |
 
-{!_inc/footer.md!}
+{!footer.md!}

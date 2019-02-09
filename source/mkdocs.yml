@@ -59,14 +59,14 @@ markdown_extensions:
     
     # Extra extensions
     - markdown_include.include:
-        base_path: docs  
+        base_path: inc  
     - plantuml
     - mdx_custom_span_class
 
 plugins:
     - search
-    - exclude:
-        glob: _inc/*
+    # - exclude:
+    #     glob: README.md
     - pdf-export:
         verbose: false
         media_type: print
