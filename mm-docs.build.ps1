@@ -30,7 +30,7 @@ task DockerRun { docker-run $aCommand -Interactive }
 task DockerListImages { docker images $ImageName --format '{{json .}}' | ConvertFrom-Json | Format-Table REPOSITORY,TAG,IMAGE,ID,CREATEDSINCE,SIZE }
 
 # Synopsis: Serve mkdocs project
-task Serve DockerStop, { docker-run mkdocs serve -Detach }
+task Serve DockerStop, { docker-run mkdocs serve -Detach -Expose }
 
 # Synopsis: Build mkdocs project into static site
 task Build { docker-run mkdocs build }
@@ -44,21 +44,23 @@ task DockerStop {
     } else { Write-Host "No container running: $ContainerName" }
 }
 
-function docker-run( [switch] $Interactive, [switch] $Detach) {
+function docker-run( [switch] $Interactive, [switch] $Detach, [switch] $Expose) {
     $params = @(
         'run'
         '--rm'
+        '-v', "${pwd}:/docs"
+        '--name', $ContainerName
+
         if ($Interactive) { '--interactive --tty' }
         if ($Detach)      { '--detach' }
-        '--name', $ContainerName
-        if (!$NoProxy) { '--env', "http_proxy",'--env', "https_proxy" }
-        '-v', "${pwd}:/docs"
-        '-p', "8000:8000"
+        if ($Expose)      { '-p', "8000:8000" }
+        if (!$NoProxy -and $Env:HTTP_PROXY) { '--env', "http_proxy",'--env', "https_proxy" }
+
         $ImageFullName        
     )
 
     $cmd = "`ndocker $params $args`n"
     Write-Host $cmd -ForegroundColor yellow
     Invoke-Expression $cmd
-    if ($LASTEXITCODE) {throw 1}
+    if ($LASTEXITCODE) { throw "Last exit code was $LastExitCode" }
 }

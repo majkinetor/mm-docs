@@ -39,4 +39,4 @@ RUN rm /var/cache/apk/*
 EXPOSE 8000
 WORKDIR /docs/source
 
-CMD [ "sh" ]
+CMD [ "mkdocs" ]
