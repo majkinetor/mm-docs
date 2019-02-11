@@ -39,7 +39,19 @@ task DockerStop {
 task Run { docker-run $aCommand -Interactive }
 
 # Synopsis: Serve docs project on http://localhost:8000
-task Serve DockerStop, { docker-run mkdocs serve -Detach -Expose }
+task Serve DockerStop, {
+    $url = "http://localhost:8000"
+    docker-run mkdocs serve -Detach -Expose 
+
+    Write-Host "Waiting for server to start ..."
+    1..5 | % { 
+        try { $status = iwr $url -Method Head | % StatusCode } catch {}
+        if (($_ -eq 5) -and ($status -ne 200)) { throw "Serving failed - invalid status $status" }
+        sleep 1
+    }
+    
+    Write-Host "Serving from docs, container, mapped to host on $url"
+}
 
 # Synopsis: Build mkdocs project into static site
 task Build { docker-run mkdocs build }
