@@ -26,15 +26,6 @@ task DockerBuild {
 # Synopsis: List docker images for docs project
 task DockerListImages { docker images $ImageName --format '{{json .}}' | ConvertFrom-Json | Format-Table REPOSITORY,TAG,IMAGE,ID,CREATEDSINCE,SIZE }
 
-# Synopsis: Run docker image interactivelly with given command
-task Run { docker-run $aCommand -Interactive }
-
-# Synopsis: Serve docs project on http://localhost:8000
-task Serve DockerStop, { docker-run mkdocs serve -Detach -Expose }
-
-# Synopsis: Build mkdocs project into static site
-task Build { docker-run mkdocs build }
-
 # Synopsis: Stop docker docs container if it is running
 task DockerStop {
     $docs = docker ps --format '{{json .}}' | convertfrom-json | ? Names -eq $ContainerName
@@ -43,6 +34,15 @@ task DockerStop {
         docker stop $ContainerName 
     } else { Write-Host "No container running: $ContainerName" }
 }
+
+# Synopsis: Run docker image interactivelly with given command
+task Run { docker-run $aCommand -Interactive }
+
+# Synopsis: Serve docs project on http://localhost:8000
+task Serve DockerStop, { docker-run mkdocs serve -Detach -Expose }
+
+# Synopsis: Build mkdocs project into static site
+task Build { docker-run mkdocs build }
 
 function docker-run( [switch] $Interactive, [switch] $Detach, [switch] $Expose) {
     $params = @(
