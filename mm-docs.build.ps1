@@ -54,7 +54,7 @@ task Serve DockerStop, {
 }
 
 # Synopsis: Build mkdocs project into static site
-task Build { docker-run mkdocs build }
+task Build DockerStop, { docker-run mkdocs build }
 
 function docker-run( [switch] $Interactive, [switch] $Detach, [switch] $Expose) {
     $params = @(
