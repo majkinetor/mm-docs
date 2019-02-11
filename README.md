@@ -24,11 +24,11 @@ There is default configuration included with bunch of extensions and plugins.
 
 You can use the system via standard docker command or via PowerShell build system Invoke-Build.
 
-Via docker, pull the image first, then run `mkdocs serve` inside the image:
+Via docker, pull the image first, then run mkdocs's command inside the image:
 
 ```powershell
 docker pull majkinetor/mm-docs
-docker run --rm -v ${pwd}:/docs --name docs --interactive --tty mm-docs mkdocs serve
+docker run --name docs --rm -v ${pwd}:/docs mm-docs mkdocs build   # use `serve` to start web server
 ```
 
 The PowerShell build system requires [Invoke-Build](https://github.com/nightroman/Invoke-Build) (alias `ib`, a cross-platform Powershell module).
