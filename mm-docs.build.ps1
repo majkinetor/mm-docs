@@ -1,14 +1,25 @@
+<# .SYNOPSIS 
+    Invoke-Build build script
+#>
 param (
+    # Tag to use when building a new docker image, by default 'latest'
     [string] $aTag = 'latest',
+
+    # Command to execute when running docker image
     [string] $aCommand,
-    [switch] $NoProxy
+
+    # Do not pass proxy environment variables to the docker container
+    [switch] $aNoProxy,
+
+    # Registry and path to use to get mm-docs image, by default majkinetor from Docker Hub
+    [string] $aRegistry = (property MM_DOCS_REGISTRY_PATH 'majkinetor')
 )
 
 Enter-Build { 
     Write-Host "If you are behind the proxy use http(s)_proxy environment variables"
-    $script:ImageName = 'mm-docs'
-    $script:ImageFullName = $(if (!$aTag) { $ImageName } else { "${ImageName}:$aTag" })
-    $script:ContainerName = 'docs'
+    $script:ImageName     = "$aRegistry/mm-docs"
+    $script:ImageFullName = if (!$aTag) { $ImageName } else { "${ImageName}:$aTag" }
+    $script:ContainerName = 'docs'    
 }
 
 # Synopsis: Build docker image
@@ -67,7 +78,7 @@ function docker-run( [switch] $Interactive, [switch] $Detach, [switch] $Expose) 
         if ($Interactive) { '--interactive --tty' }
         if ($Detach)      { '--detach' }
         if ($Expose)      { '-p', "8000:8000" }
-        if (!$NoProxy -and $Env:HTTP_PROXY) { '--env', "http_proxy",'--env', "https_proxy" }
+        if (!$aNoProxy -and $Env:HTTP_PROXY) { '--env', "http_proxy",'--env', "https_proxy" }
 
         $ImageFullName        
     )
