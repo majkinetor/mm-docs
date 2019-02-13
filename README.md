@@ -22,7 +22,16 @@ There is default configuration included with bunch of extensions and plugins.
 
 ## Usage
 
-The build requires [Invoke-Build](https://github.com/nightroman/Invoke-Build) (alias `ib`, cross-platform Powershell module).
+You can use the system via standard docker command or via PowerShell build system Invoke-Build.
+
+Via docker, pull the image first, then run mkdocs's command inside the image:
+
+```powershell
+docker pull majkinetor/mm-docs
+docker run --name docs --rm -v ${pwd}:/docs mm-docs mkdocs build   # use `serve` to start web server
+```
+
+The PowerShell build system requires [Invoke-Build](https://github.com/nightroman/Invoke-Build) (alias `ib`, a cross-platform Powershell module).
 
 ```
 PS> Invoke-Build ?
