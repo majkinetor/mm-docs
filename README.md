@@ -29,13 +29,17 @@ Name             Jobs                   Synopsis
 ----             ----                   --------
 DockerBuild      {{}, DockerListImages} Build docker image
 DockerListImages {}                     List docker images for docs project
+DockerStop       {}                     Stop docker docs container if it is running
 Run              {}                     Run docker image interactivelly with given command
 Serve            {DockerStop, {}}       Serve docs project on http://localhost:8000
 Build            {}                     Build mkdocs project into static site
-DockerStop       {}                     Stop docker docs container if it is running
 ```
 
 ## Quick start
+
+Run `ib Build` to compile demo static site.
+
+To customize:
 
 - Edit [source/mkdocs.yml](source/mkdocs.yml) to set up static site details
 - Add pages in [source/docs](source/docs) folder

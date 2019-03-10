@@ -6,7 +6,7 @@ param (
 
 Enter-Build { 
     Write-Host "If you are behind the proxy use http(s)_proxy environment variables"
-    $script:ImageName = 'mm-docs'
+    $script:ImageName = 'majkinetor/mm-docs'
     $script:ImageFullName = $(if (!$aTag) { $ImageName } else { "${ImageName}:$aTag" })
     $script:ContainerName = 'docs'
 }

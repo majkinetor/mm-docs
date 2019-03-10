@@ -1,0 +1,9 @@
+mkdocs==1.0.4
+mkdocs-material==4.0.2
+plantuml-markdown==2.0.1
+
+markdown-include==0.5.1
+mkdocs-exclude==1.0.2
+mkdocs-macros-plugin==0.2.4
+mkdocs-pdf-export-plugin==0.5.4
+git+https://github.com/exaroth/mdx_custom_span_class.git
