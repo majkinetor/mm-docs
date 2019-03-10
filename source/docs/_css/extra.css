@@ -5,6 +5,10 @@ img {
     margin-right: auto;
 }
 
+span.zakon {
+    float: right;
+}
+
 .api {
     border: 2px solid #cccccc;
     padding: .3em
@@ -23,14 +27,14 @@ img {
     color: red;
 }
 
+.color-yellow {
+    color: yellow;
+}
+
 .color-blue {
     color: blue;
 }
 
 .color-green {
     color: green;
-}
-
-.color-yellow {
-    color: yellow;
 }

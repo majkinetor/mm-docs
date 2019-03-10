@@ -1,8 +1,13 @@
 ﻿# Demonstration page
 
-For more details see:
+[mm-docs](https://github.com/majkinetor/mm-docs) demonstration page.
 
-- [Mkdcos Material Extensions](https://squidfunk.github.io/mkdocs-material/extensions/admonition)
+For more details about included tools see:
+
+- [Mkdocs](https://www.mkdocs.org)
+- [Mkdocs Material Extensions](https://squidfunk.github.io/mkdocs-material/extensions/admonition)
+- [PlantUML](http://plantuml.com)
+- [MathJax](https://www.mathjax.org/)
 
 ## Typography
 
