@@ -1,7 +1,7 @@
 # https://github.com/anapsix/docker-alpine-java
 FROM anapsix/alpine-java:latest 
 
-ARG PLANTUML_VERSION=1.2019.2
+ARG PLANTUML_VERSION=1.2019.4
 ARG PLANTUML_DIR=/opt/plantuml
 ARG PLANTUML_BIN=/usr/local/bin/plantuml
 ARG PLANTUML_URL=https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download
@@ -25,18 +25,10 @@ RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
 RUN apk add python3 python3-dev \
     && python3 -m pip install --upgrade pip setuptools
 
-RUN pip install mkdocs mkdocs-material plantuml-markdown
+WORKDIR /docs
+COPY requirements.txt . 
+RUN pip install -r requirements.txt
+RUN rm /var/cache/apk/* && rm -rf /docs
 
-RUN pip install \
-    markdown-include \
-    mkdocs-exclude  \
-    mkdocs-macros-plugin \
-    mkdocs-pdf-export-plugin \
-    git+https://github.com/exaroth/mdx_custom_span_class.git
-
-RUN rm /var/cache/apk/*
-
-EXPOSE 8000
 WORKDIR /docs/source
-
 CMD [ "mkdocs" ]

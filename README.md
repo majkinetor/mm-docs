@@ -48,6 +48,10 @@ Build            {}                     Build mkdocs project into static site
 
 ## Quick start
 
+Run `ib Build` to compile demo static site.
+
+To customize:
+
 - Edit [source/mkdocs.yml](source/mkdocs.yml) to set up static site details
 - Add pages in [source/docs](source/docs) folder
 - Add includables in [source/inc](source/inc) folder
