@@ -1,0 +1,25 @@
+/* https://github.com/zhaoterryy/mkdocs-pdf-export-plugin#adjusting-the-output */
+
+@page {
+    size: a4 portrait;
+    margin: 25mm 10mm 25mm 10mm;
+    counter-increment: page;
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+    white-space: pre;
+    color: grey;
+    @top-left {
+        content: '© 2019 majkinetor';
+    }
+    
+    /* @top-center {
+
+        content: string(chapter);
+    } */
+
+    @top-right {
+        content: 'mm-docs demo';
+    }
+    @bottom-right {
+        content: counter(page) ' / ' counter(pages);
+    }
+}
