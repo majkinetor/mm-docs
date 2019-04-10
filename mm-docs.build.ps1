@@ -3,88 +3,55 @@
 #>
 param (
     # Tag to use when building a new docker image, by default 'latest'
-    [string] $aTag = 'latest',
+    [string] $aTag = 'latest', 
 
-    # Command to execute when running docker image
-    [string] $aCommand,
-
-    # Do not pass proxy environment variables to the docker container
-    [switch] $aNoProxy,
-
-    # Registry and path to use to get mm-docs image, by default majkinetor from Docker Hub
-    [string] $aRegistry = (property MM_DOCS_REGISTRY_PATH 'majkinetor')
+    # Use latest versions of all included components
+    [switch] $aLatestModules
 )
 
 Enter-Build { 
     Write-Host "If you are behind the proxy use http(s)_proxy environment variables"
-    $script:ImageName     = "$aRegistry/mm-docs"
+    $script:ImageName     = "majkinetor/mm-docs"
     $script:ImageFullName = if (!$aTag) { $ImageName } else { "${ImageName}:$aTag" }
-    $script:ContainerName = 'docs'    
 }
 
 # Synopsis: Build docker image
-task DockerBuild {
+task Build {
+    if ($aLatestModules) {
+        if (!(Test-Path requirements.txt.bak)) { Copy-Item requirements.txt requirements.txt.bak }
+        Write-Host "Removing versions from requirements.txt file" -ForegroundColor yellow
+        (Get-Content requirements.txt) -replace '=.+' | Set-Content -Encoding Ascii requirements.txt
+
+        $plantuml_version = Invoke-RestMethod "https://chocolatey.org/api/v2/Packages()?`$filter=((Id%20eq%20%27plantuml%27)%20and%20(not%20IsPrerelease))%20and%20IsLatestVersion"
+        $plantuml_version = $plantuml_version.properties.version
+        Write-Host "Setting latest PlantUML version:" $plantuml_version -ForegroundColor yellow
+        (Get-Content Dockerfile) -replace  '(PLANTUML_VERSION)=(.+)', "`$1=$plantuml_version" | Set-Content .\Dockerfile
+    }
+
     $params = @(
         'build'
         '--pull'
-        '--build-arg',  "http_proxy=$Env:http_proxy"
-        '--build-arg',  "https_proxy=$Env:https_proxy"
-        '-t',           $ImageFullName
+        if ($Env:http_proxy)   { '--build-arg', "http_proxy=$Env:http_proxy" }
+        if ($Env:https_proxy)  { '--build-arg', "https_proxy=$Env:https_proxy" }
+        '-t', $ImageFullName
         '.'
     )
+
+    Write-Host "Cmd:  " docker $params -ForegroundColor green
     docker $params
-}, DockerListImages
-
-# Synopsis: List docker images for docs project
-task DockerListImages { docker images $ImageName --format '{{json .}}' | ConvertFrom-Json | Format-Table REPOSITORY,TAG,IMAGE,ID,CREATEDSINCE,SIZE }
-
-# Synopsis: Stop docker docs container if it is running
-task DockerStop {
-    $docs = docker ps --format '{{json .}}' | convertfrom-json | ? Names -eq $ContainerName
-    if ($docs) { 
-        Write-Host "Stopping running container: $ContainerName"
-        docker stop $ContainerName 
-    } else { Write-Host "No container running: $ContainerName" }
 }
 
-# Synopsis: Run docker image interactivelly with given command
-task Run { docker-run $aCommand -Interactive }
+# Synopsis: Run interactive session
+task RunShell { docker run -it --rm $ImageFullName sh }
 
-# Synopsis: Serve docs project on http://localhost:8000
-task Serve DockerStop, {
-    $url = "http://localhost:8000"
-    docker-run mkdocs serve -Detach -Expose 
+# Synopsis: Generate latest python requirements 
+task GetVersions {
+    Write-Host "Setting container versions in requirements.txt file" -ForegroundColor yellow
+    $cVersions = docker run -it --rm $ImageFullName pip list -l --format=json | ConvertFrom-Json
+    (Get-Content requirements.txt) | % {
+        $version = $cVersions | ? name -eq $_ | % version
+        if ($version) { "$_==$version" } else { $_ }
+    } | Set-Content -Encoding Ascii requirements.txt
 
-    Write-Host "Waiting for server to start ..."
-    1..5 | % { 
-        try { $status = iwr $url -Method Head -UseBasicParsing | % StatusCode } catch {}
-        if (($_ -eq 5) -and ($status -ne 200)) { throw "Serving failed - invalid status $status" }
-        sleep 1
-    }
-    
-    Write-Host "Serving from docs, container, mapped to host on $url"
-}
-
-# Synopsis: Build mkdocs project into static site
-task Build DockerStop, { docker-run mkdocs build }
-
-function docker-run( [switch] $Interactive, [switch] $Detach, [switch] $Expose) {
-    $params = @(
-        'run'
-        '--rm'
-        '-v', "${pwd}:/docs"
-        '--name', $ContainerName
-
-        if ($Interactive) { '--interactive --tty' }
-        if ($Detach)      { '--detach' }
-        if ($Expose)      { '-p', "8000:8000" }
-        if (!$aNoProxy -and $Env:HTTP_PROXY) { '--env', "http_proxy",'--env', "https_proxy" }
-
-        $ImageFullName        
-    )
-
-    $cmd = "`ndocker $params $args`n"
-    Write-Host $cmd -ForegroundColor yellow
-    Invoke-Expression $cmd
-    if ($LASTEXITCODE) { throw "Last exit code was $LastExitCode" }
+    Get-Content requirements.txt
 }
