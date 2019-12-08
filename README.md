@@ -25,10 +25,10 @@ To start writing, clone/use [mm-docs-template](https://github.com/majkinetor/mm-
 
 The PowerShell build system requires [Invoke-Build](https://github.com/nightroman/Invoke-Build) (alias `ib`, a cross-platform Powershell module).
 
-|                 Command                 |                  Description                   |
-| --------------------------------------- | ---------------------------------------------- |
-| `ib Build`                              | Build docker image                             |
-| `ib Build, GetVersions -aLatestModules` | Build docker image with all components updated |
+|                       Command                       |                  Description                   |
+| --------------------------------------------------- | ---------------------------------------------- |
+| `ib Build`                                          | Build docker image                             |
+| `ib Build, GetVersions -aLatestModules -aTag 0.2.1` | Build docker image with all components updated |
 
 Run `Invoke-Build ?` to get the list of other available tasks.
 

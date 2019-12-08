@@ -44,14 +44,23 @@ task Build {
 # Synopsis: Run interactive session
 task RunShell { docker run -it --rm $ImageFullName sh }
 
-# Synopsis: Generate latest python requirements 
+# Synopsis: Generate latest python requirement versions
 task GetVersions {
     Write-Host "Setting container versions in requirements.txt file" -ForegroundColor yellow
-    $cVersions = docker run -it --rm $ImageFullName pip list -l --format=json | ConvertFrom-Json
+    
+    $cVersions = exec {
+        docker run -it --rm $ImageFullName pip list -l --format=json | ConvertFrom-Json
+    }
+
     (Get-Content requirements.txt) | % {
         $version = $cVersions | ? name -eq $_ | % version
         if ($version) { "$_==$version" } else { $_ }
     } | Set-Content -Encoding Ascii requirements.txt
 
     Get-Content requirements.txt
+}
+
+# Synopsis: Remove docker images
+task Clean {
+    docker rmi $script:ImageName
 }

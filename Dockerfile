@@ -1,7 +1,7 @@
 # https://github.com/anapsix/docker-alpine-java
 FROM anapsix/alpine-java:latest 
 
-ARG PLANTUML_VERSION=1.2019.4
+ARG PLANTUML_VERSION=1.2019.12
 ARG PLANTUML_DIR=/opt/plantuml
 ARG PLANTUML_BIN=/usr/local/bin/plantuml
 ARG PLANTUML_URL=https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download
@@ -13,7 +13,7 @@ RUN apk update
 
 RUN apk add \
         curl git \
-# weasyprint stuff                                                                
+# weasyprint stuff
         gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
 
 RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
@@ -23,10 +23,10 @@ RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
     && chmod +x $PLANTUML_BIN
 
 RUN apk add python3 python3-dev \
-    && python3 -m pip install --upgrade pip setuptools
+    && python3 -m pip install --upgrade pip setuptools wheel
 
 WORKDIR /docs
-COPY requirements.txt . 
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 RUN rm /var/cache/apk/* && rm -rf /docs
 
