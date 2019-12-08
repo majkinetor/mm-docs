@@ -1,6 +1,6 @@
 # MM-DOCS
 
-[![](https://images.microbadger.com/badges/image/majkinetor/mm-docs.svg)](https://microbadger.com/images/majkinetor/mm-docs "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/majkinetor/mm-docs:0.2.svg)](https://microbadger.com/images/majkinetor/mm-docs:0.2 "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/majkinetor/mm-docs.svg)](https://microbadger.com/images/majkinetor/mm-docs "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/majkinetor/mm-docs:0.2.1.svg)](https://microbadger.com/images/majkinetor/mm-docs:0.2.1 "Get your own version badge on microbadger.com")
 
 This is a docker image that setups and runs documentation system designed for all types of project documentation and can be used in cross-platform manner.
 
@@ -16,14 +16,14 @@ Markup to make UML diagrams from text files
 
 ## Prerequisites
 
-- Requires docker to build and run
-- Build system requires PowerShell
+- Docker to build, serve and develop
+- PowerShell for the convenient task system (optional)
 
 ## Usage
 
-To start writing, clone/use [mm-docs-template](https://github.com/majkinetor/mm-docs-template.git).
+To start writing, clone/use [mm-docs-template](https://github.com/majkinetor/mm-docs-template.git) - this repository is not used directly when writing documentation. This repository is used to improve the mm-docs itself.
 
-The PowerShell build system requires [Invoke-Build](https://github.com/nightroman/Invoke-Build) (alias `ib`, a cross-platform Powershell module).
+The project uses cross-platform PowerShell build system [Invoke-Build](https://github.com/nightroman/Invoke-Build).
 
 |                       Command                       |                  Description                   |
 | --------------------------------------------------- | ---------------------------------------------- |
@@ -31,4 +31,5 @@ The PowerShell build system requires [Invoke-Build](https://github.com/nightroma
 | `ib Build, GetVersions -aLatestModules -aTag 0.2.1` | Build docker image with all components updated |
 
 Run `Invoke-Build ?` to get the list of other available tasks.
+
 
