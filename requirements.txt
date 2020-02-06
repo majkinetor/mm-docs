@@ -7,4 +7,5 @@ mkdocs-exclude==1.0.2
 mkdocs-macros-plugin==0.3.3
 
 mkdocs-pdf-export-plugin==0.5.5
-mdx-custom-span-class==1.1.2
+
+git+https://github.com/exaroth/mdx_custom_span_class.git
