@@ -1,6 +1,6 @@
 # MM-DOCS
 
-[![](https://images.microbadger.com/badges/image/majkinetor/mm-docs.svg)](https://microbadger.com/images/majkinetor/mm-docs "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/majkinetor/mm-docs:0.2.1.svg)](https://microbadger.com/images/majkinetor/mm-docs:0.2.1 "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/majkinetor/mm-docs.svg)](https://microbadger.com/images/majkinetor/mm-docs "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/majkinetor/mm-docs:0.2.2.svg)](https://microbadger.com/images/majkinetor/mm-docs:0.2.2 "Get your own version badge on microbadger.com")
 
 This is a docker image that setups and runs documentation system designed for all types of project documentation and can be used in cross-platform manner.
 
