@@ -30,7 +30,6 @@ task Build {
 
     $params = @(
         'build'
-        '--pull'
         if ($Env:http_proxy)   { '--build-arg', "http_proxy=$Env:http_proxy" }
         if ($Env:https_proxy)  { '--build-arg', "https_proxy=$Env:https_proxy" }
         '-t', $ImageFullName
