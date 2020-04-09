@@ -1,6 +1,6 @@
 # MM-DOCS
 
-[![](https://images.microbadger.com/badges/version/majkinetor/mm-docs:0.2.2.svg)](https://microbadger.com/images/majkinetor/mm-docs:0.2.2 "Get your own version badge on microbadger.com") ![](https://img.shields.io/docker/pulls/majkinetor/mm-docs) [TEMPLATE](https://github.com/majkinetor/mm-docs-template)
+[![](https://images.microbadger.com/badges/version/majkinetor/mm-docs:0.3.svg)](https://microbadger.com/images/majkinetor/mm-docs:0.3 "Get your own version badge on microbadger.com") ![](https://img.shields.io/docker/pulls/majkinetor/mm-docs) [TEMPLATE](https://github.com/majkinetor/mm-docs-template)
 
 This is a docker image that setups and runs documentation system designed for all types of project documentation and can be used in cross-platform manner.
 
@@ -31,5 +31,3 @@ The project uses cross-platform PowerShell build system [Invoke-Build](https://g
 | `ib Build, GetVersions -aLatestModules -aTag 0.2.1` | Build docker image with all components updated |
 
 Run `Invoke-Build ?` to get the list of other available tasks.
-
-
