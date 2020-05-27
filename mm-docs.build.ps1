@@ -37,7 +37,7 @@ task Build {
     )
 
     Write-Host "Cmd:  " docker $params -ForegroundColor green
-    docker $params
+    exec { docker $params }
 }
 
 # Synopsis: Run interactive session

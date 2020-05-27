@@ -1,18 +1,11 @@
-mkdocs==1.1
-mkdocs-material==5.0.1
+mkdocs==1.1.2
+mkdocs-material==5.2.2
 plantuml-markdown==3.2.2
 
 markdown-include==0.5.1
 mkdocs-exclude==1.0.2
+mkdocs-macros-plugin==0.4.9
 
-# mkdocs-pdf-export-plugin==0.5.5
-# https://github.com/zhaoterryy/mkdocs-pdf-export-plugin/issues/76
-git+https://github.com/zhaoterryy/mkdocs-pdf-export-plugin.git
+mkdocs-pdf-export-plugin==0.5.6
 
 git+https://github.com/exaroth/mdx_custom_span_class.git
-
-# mkdocs-macros-plugin==0.4.4
-# 0.4.6
-git+https://github.com/fralau/mkdocs_macros_plugin.git
-
-
