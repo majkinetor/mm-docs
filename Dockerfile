@@ -1,7 +1,7 @@
 # https://github.com/anapsix/docker-alpine-java
 FROM anapsix/alpine-java:latest
 
-ARG PLANTUML_VERSION=1.2020.12
+ARG PLANTUML_VERSION=1.2020.15
 ARG PLANTUML_DIR=/opt/plantuml
 ARG PLANTUML_BIN=/usr/local/bin/plantuml
 ARG PLANTUML_URL=https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download
