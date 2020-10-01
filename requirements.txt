@@ -1,10 +1,10 @@
 mkdocs==1.1.2
-mkdocs-material==5.4.0
-plantuml-markdown==3.3.0
+mkdocs-material==6.0.1
+plantuml-markdown==3.4.0
 
-markdown-include==0.5.1
+markdown-include==0.6.0
 mkdocs-exclude==1.0.2
-mkdocs-macros-plugin==0.4.9
+mkdocs-macros-plugin==0.4.17
 
 mkdocs-pdf-export-plugin==0.5.8
 
