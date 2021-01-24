@@ -14,7 +14,9 @@ RUN apk update
 RUN apk add \
         curl git \
 # weasyprint stuff
-        gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
+        gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev \
+# link checker
+        nodejs npm
 
 RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
     && mkdir $PLANTUML_DIR \
@@ -23,7 +25,8 @@ RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
     && chmod +x $PLANTUML_BIN
 
 RUN apk add python3 python3-dev \
-    && python3 -m pip install --upgrade pip setuptools wheel
+    && python3 -m pip install --upgrade pip setuptools wheel \
+    && npm install broken-link-checker -g
 
 WORKDIR /docs
 COPY requirements.txt .
