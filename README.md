@@ -1,6 +1,6 @@
 # MM-DOCS
 
-[![](https://img.shields.io/docker/v/majkinetor/mm-docs/0.3.6?label=mm-docs)](https://hub.docker.com/r/majkinetor/mm-docs) ![](https://img.shields.io/docker/pulls/majkinetor/mm-docs) [TEMPLATE](https://github.com/majkinetor/mm-docs-template)
+[![](https://img.shields.io/docker/v/majkinetor/mm-docs/0.4.0?label=mm-docs)](https://hub.docker.com/r/majkinetor/mm-docs) ![](https://img.shields.io/docker/pulls/majkinetor/mm-docs) [TEMPLATE](https://github.com/majkinetor/mm-docs-template)
 
 This is a docker image that setups and runs documentation system designed for all types of project documentation and can be used in cross-platform manner.
 
@@ -25,9 +25,9 @@ To start writing, clone/use [mm-docs-template](https://github.com/majkinetor/mm-
 
 The project uses cross-platform PowerShell build system [Invoke-Build](https://github.com/nightroman/Invoke-Build).
 
-|                       Command                       |                  Description                   |
-| --------------------------------------------------- | ---------------------------------------------- |
-| `ib Build`                                          | Build docker image                             |
-| `ib Build, GetVersions -aLatestModules -aTag 0.2.1` | Build docker image with all components updated |
+|                       Command            |                  Description                   |
+| ---------------------------------------- | ---------------------------------------------- |
+| `ib Build`                               | Build docker image                             |
+| `ib Build, GetVersions -aLatestModules ` | Build docker image with all components updated |
 
 Run `Invoke-Build ?` to get the list of other available tasks.
