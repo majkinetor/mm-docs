@@ -1,8 +1,8 @@
 # MM-DOCS
 
-[![](https://img.shields.io/docker/v/majkinetor/mm-docs/0.4.0?label=mm-docs)](https://hub.docker.com/r/majkinetor/mm-docs) ![](https://img.shields.io/docker/pulls/majkinetor/mm-docs) [TEMPLATE](https://github.com/majkinetor/mm-docs-template). To start writing, clone/use [mm-docs-template](https://github.com/majkinetor/mm-docs-template.git).
+[![](https://img.shields.io/docker/v/majkinetor/mm-docs/0.4.0?label=mm-docs)](https://hub.docker.com/r/majkinetor/mm-docs) ![](https://img.shields.io/docker/pulls/majkinetor/mm-docs) [TEMPLATE](https://github.com/majkinetor/mm-docs-template). 
 
-This is a docker image that setups and runs documentation system designed for all types of project documentation and can be used in cross-platform manner. This repository is not used directly when writing documentation but the mm-docs itself.
+This is a docker image that setups and runs documentation system designed for all types of project documentation and can be used in cross-platform manner. This repository is not used directly when writing documentation but the mm-docs itself. To start writing, clone/use [mm-docs-template](https://github.com/majkinetor/mm-docs-template.git).
 
 The image is built upon Alpine linux and:
 
