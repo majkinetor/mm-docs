@@ -19,7 +19,7 @@ Markup to make UML diagrams from text files
 - Docker to build, serve and develop
   - On Windows: `choco install docker-desktop`
 - PowerShell for the convenient task system (optional)
-    - [Invoke-Build](https://github.com/nightroman/Invoke-Build): `Install-Module Invoke-Build`
+    - [Invoke-Build](https://github.com/nightroman/Invoke-Build): `Install-Module InvokeBuild`
 
 ## Usage
 
