@@ -30,4 +30,6 @@ Run `Invoke-Build ?` to get the list of available tasks. Most important ones are
 | `ib Build`                               | Build docker image                             |
 | `ib Build, GetVersions -aLatestModules ` | Build docker image with all components updated |
 
+where `ib` is alias to Invoke-Build.
+
 
