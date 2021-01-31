@@ -1,15 +1,15 @@
-<# .SYNOPSIS 
+<# .SYNOPSIS
     Invoke-Build build script
 #>
 param (
     # Tag to use when building a new docker image, by default 'latest'
-    [string] $aTag = 'latest', 
+    [string] $aTag = 'latest',
 
     # Use latest versions of all included components
     [switch] $aLatestModules
 )
 
-Enter-Build { 
+Enter-Build {
     Write-Host "If you are behind the proxy use http(s)_proxy environment variables"
     $script:ImageName     = "majkinetor/mm-docs"
     $script:ImageFullName = if (!$aTag) { $ImageName } else { "${ImageName}:$aTag" }
@@ -46,11 +46,11 @@ task RunShell { docker run -it --rm $ImageFullName sh }
 # Synopsis: Generate latest python requirement versions
 task GetVersions {
     Write-Host "Setting container versions in requirements.txt file" -ForegroundColor yellow
-    
-    $cVersions = exec {
-        docker run -it --rm $ImageFullName pip list -l --format=json | ConvertFrom-Json
-    }
 
+    $cVersions = exec {
+        docker run -it --rm $ImageFullName pip list -l --format=json --disable-pip-version-check
+    }
+    $cVersions = $cVersions | ConvertFrom-Json
     (Get-Content requirements.txt) | % {
         $version = $cVersions | ? name -eq $_ | % version
         if ($version) { "$_==$version" } else { $_ }
