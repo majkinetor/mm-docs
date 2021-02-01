@@ -1,5 +1,4 @@
-# https://github.com/anapsix/docker-alpine-java
-FROM anapsix/alpine-java:latest
+FROM openjdk:8-jre-alpine
 
 ARG PLANTUML_VERSION=1.2021.0
 ARG PLANTUML_DIR=/opt/plantuml
@@ -27,6 +26,15 @@ RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
 RUN apk add python3 python3-dev \
     && python3 -m pip install --upgrade pip setuptools wheel \
     && npm install broken-link-checker -g
+
+# Install chromium and puppeteer
+ENV CHROME_BIN="/usr/bin/chromium-browser" \
+    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
+RUN set -x \
+    && apk update \
+    && apk upgrade \
+    && apk add udev ttf-freefont chromium \
+    && npm install puppeteer -g
 
 WORKDIR /docs
 COPY requirements.txt .
