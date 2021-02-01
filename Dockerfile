@@ -8,11 +8,19 @@ ARG PLANTUML_SCRIPT='#!/bin/sh \njava -jar -Dfile.encoding=$PLANTUML_ENCODING /o
 
 ENV PLANTUML_ENCODING=en_US.UTF-8
 
-RUN apk update
+RUN    echo "http://dl-cdn.alpinelinux.org/alpine/edge/main"       > /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing"   >> /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/v3.12/main"     >> /etc/apk/repositories \
+    && apk update && apk upgrade -U -a
+
+RUN apk update && apk add python3 python3-dev py3-pip nodejs npm \
+    && python3 -m pip install --upgrade pip setuptools wheel \
+    && npm install broken-link-checker -g
 
 RUN apk add \
         curl git \
-# weasyprint stuff
+# weasyprint stuff (for pdf export plugin)
         gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev \
 # link checker
         nodejs npm
@@ -23,18 +31,13 @@ RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
     && printf "$PLANTUML_SCRIPT" >> $PLANTUML_BIN \
     && chmod +x $PLANTUML_BIN
 
-RUN apk add python3 python3-dev \
-    && python3 -m pip install --upgrade pip setuptools wheel \
-    && npm install broken-link-checker -g
+# install chromium and puppeteer ( to pdf export print-site page )
+RUN apk add udev libstdc++ chromium harfbuzz nss freetype ttf-freefont font-noto-emoji wqy-zenhei
+COPY local.conf /etc/fonts/local.conf
 
-# Install chromium and puppeteer
-ENV CHROME_BIN="/usr/bin/chromium-browser" \
-    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
-RUN set -x \
-    && apk update \
-    && apk upgrade \
-    && apk add udev ttf-freefont chromium \
-    && npm install puppeteer -g
+ENV CHROME_BIN=/usr/bin/chromium-browser  \
+    CHROME_PATH=/usr/lib/chromium/
+RUN PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install puppeteer -g
 
 WORKDIR /docs
 COPY requirements.txt .
