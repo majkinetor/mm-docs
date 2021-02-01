@@ -39,7 +39,7 @@ ENV CHROME_BIN="/usr/bin/chromium-browser" \
 
 RUN set -x \
     && apk add udev ttf-freefont chromium \
-    && npm install puppeteer -g
+    && npm install puppeteer --save
 
 WORKDIR /docs
 COPY requirements.txt .
