@@ -1,5 +1,4 @@
-# https://github.com/anapsix/docker-alpine-java
-FROM anapsix/alpine-java:latest
+FROM openjdk:8-jre-alpine
 
 ARG PLANTUML_VERSION=1.2021.0
 ARG PLANTUML_DIR=/opt/plantuml
@@ -9,14 +8,23 @@ ARG PLANTUML_SCRIPT='#!/bin/sh \njava -jar -Dfile.encoding=$PLANTUML_ENCODING /o
 
 ENV PLANTUML_ENCODING=en_US.UTF-8
 
-RUN apk update
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    && echo "http://dl-cdn.alpinelinux.org/alpine/v3.12/main" >> /etc/apk/repositories \
+    && apk update && apk upgrade -U -a
+
+RUN apk add python3 python3-dev py3-pip nodejs npm \
+    && python3 -m pip install --upgrade pip setuptools wheel \
+    && npm install broken-link-checker -g
+
+RUN apk add libstdc++ chromium harfbuzz nss freetype ttf-freefont font-noto-emoji wqy-zenhei
+COPY local.conf /etc/fonts/local.conf
 
 RUN apk add \
         curl git \
 # weasyprint stuff
-        gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev \
-# link checker
-        nodejs npm
+        gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
 
 RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
     && mkdir $PLANTUML_DIR \
@@ -24,9 +32,14 @@ RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
     && printf "$PLANTUML_SCRIPT" >> $PLANTUML_BIN \
     && chmod +x $PLANTUML_BIN
 
-RUN apk add python3 python3-dev \
-    && python3 -m pip install --upgrade pip setuptools wheel \
-    && npm install broken-link-checker -g
+# Install chromium and puppeteer
+ENV CHROME_BIN="/usr/bin/chromium-browser" \
+    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true" \
+    CHROME_PATH=/usr/lib/chromium/
+
+RUN set -x \
+    && apk add udev ttf-freefont chromium \
+    && npm install puppeteer -g
 
 WORKDIR /docs
 COPY requirements.txt .
