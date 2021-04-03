@@ -1,6 +1,6 @@
 # MM-DOCS
 
-[![](https://img.shields.io/docker/v/majkinetor/mm-docs/0.6.1?label=mm-docs)](https://hub.docker.com/r/majkinetor/mm-docs)  ![](https://img.shields.io/docker/pulls/majkinetor/mm-docs) &nbsp;&nbsp;&nbsp;&nbsp; [TEMPLATE](https://github.com/majkinetor/mm-docs-template) 
+[![](https://img.shields.io/docker/v/majkinetor/mm-docs/0.6.2?label=mm-docs)](https://hub.docker.com/r/majkinetor/mm-docs)  ![](https://img.shields.io/docker/pulls/majkinetor/mm-docs) &nbsp;&nbsp;&nbsp;&nbsp; [TEMPLATE](https://github.com/majkinetor/mm-docs-template)
 
 This is a docker image that setups and runs documentation system designed for all types of project documentation and can be used in cross-platform manner. This repository is not used directly when writing documentation and its purpose is to improve the mm-docs itself. To start writing, clone/use [mm-docs-template](https://github.com/majkinetor/mm-docs-template.git).
 
@@ -31,5 +31,3 @@ Run `Invoke-Build ?` to get the list of available tasks. Most important ones are
 | `ib Build, GetVersions -aLatestModules ` | Build docker image with all components updated |
 
 where `ib` is alias to Invoke-Build.
-
-
