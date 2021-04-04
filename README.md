@@ -16,7 +16,7 @@ Documentation system based on python and markdown
 Beautiful mkdos theme with number of extensions
 - [plantuml](http://plantuml.com)<br>
 Markup to make UML diagrams from text files
-- [Headless Chrome with Puppeter](https://developers.google.com/web/tools/puppeteer/)<br>
+- [Chromium with Puppeter](https://developers.google.com/web/tools/puppeteer/)<br>
 Automation system for generating PDF export and can be used in general
 - [Broken Link Checker](https://github.com/stevenvachon/broken-link-checker)<br>
 Command line tool to check for broken links
