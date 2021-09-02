@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
 
-ARG PLANTUML_VERSION=1.2021.6
+ARG PLANTUML_VERSION=1.2021.10
 ARG PLANTUML_DIR=/opt/plantuml
 ARG PLANTUML_BIN=/usr/local/bin/plantuml
 ARG PLANTUML_URL=https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download
@@ -24,7 +24,7 @@ COPY local.conf /etc/fonts/local.conf
 RUN apk add \
         curl git \
 # weasyprint stuff
-        gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev
+        gcc musl-dev jpeg-dev zlib-dev libffi-dev cairo-dev pango-dev gdk-pixbuf-dev g++
 
 RUN apk add graphviz ttf-droid ttf-droid-nonlatin \
     && mkdir $PLANTUML_DIR \
