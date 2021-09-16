@@ -6,5 +6,7 @@ markdown-include==0.6.0
 mkdocs-exclude==1.0.2
 mkdocs-macros-plugin==0.6.0
 
+
 mkdocs-pdf-export-plugin==0.5.9
-mkdocs-print-site-plugin==1.2.3
+mkdocs-print-site-plugin==2.0.0
+ 

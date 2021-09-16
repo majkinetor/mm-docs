@@ -20,7 +20,7 @@ task Build {
     if ($aLatestModules) {
         if (!(Test-Path requirements.txt.bak)) { Copy-Item requirements.txt requirements.txt.bak }
         Write-Host "Removing versions from requirements.txt file" -ForegroundColor yellow
-        (Get-Content requirements.txt) -replace '=.+' | Set-Content -Encoding Ascii requirements.txt
+        ((Get-Content requirements.txt).Trim() -replace '=.+') + " "*(Get-Random 10) | Set-Content -Encoding Ascii requirements.txt
 
         $plantuml_version = Invoke-RestMethod "https://chocolatey.org/api/v2/Packages()?`$filter=((Id%20eq%20%27plantuml%27)%20and%20(not%20IsPrerelease))%20and%20IsLatestVersion"
         $plantuml_version = $plantuml_version.properties.version
