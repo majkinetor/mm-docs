@@ -1,5 +1,5 @@
 mkdocs==1.2.2
-mkdocs-material==7.2.6
+mkdocs-material==7.3.0
 plantuml-markdown==3.4.3
 
 markdown-include==0.6.0
@@ -9,4 +9,3 @@ mkdocs-macros-plugin==0.6.0
 
 mkdocs-pdf-export-plugin==0.5.9
 mkdocs-print-site-plugin==2.0.0
- 
