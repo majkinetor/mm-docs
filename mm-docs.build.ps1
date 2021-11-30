@@ -40,6 +40,9 @@ task Build {
     exec { docker $params }
 }
 
+# Synopsis: Update docker image with latest dependencies
+task Update { $script:aLatestModules = $true }, Build, GetVersions
+
 # Synopsis: Run interactive session
 task RunShell { docker run -it --rm $ImageFullName sh }
 
