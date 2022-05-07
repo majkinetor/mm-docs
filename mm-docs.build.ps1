@@ -46,6 +46,17 @@ task Update { $script:aLatestModules = $true }, Build, GetVersions
 # Synopsis: Run interactive session
 task RunShell { docker run -it --rm $ImageFullName sh }
 
+# Synopsis: Publish docker image
+task Publish {
+    if (!$aTag) { throw "aTag is required" }
+
+    exec {
+        docker tag majkinetor/mm-docs:latest majkinetor/mm-docs:$aTag
+        docker login
+        docker push majkinetor/mm-docs:$aTag
+    }
+}
+
 # Synopsis: Generate latest python requirement versions
 task GetVersions {
     Write-Host "Setting container versions in requirements.txt file" -ForegroundColor yellow
