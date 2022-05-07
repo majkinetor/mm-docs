@@ -33,9 +33,10 @@ Command line tool to check for broken links
 
 Run `Invoke-Build ?` to get the list of available tasks. Most important ones are given bellow.
 
-|   Command   |                  Description                   |
-| ----------- | ---------------------------------------------- |
-| `ib Build`  | Build docker image                             |
-| `ib Update` | Build docker image with all components updated |
+|   Command    |                            Description                             |
+| ------------ | ------------------------------------------------------------------ |
+| `ib Build`   | Build docker image                                                 |
+| `ib Update`  | Build docker image with all components updated                     |
+| `ib Publish` | Publish latest image as new tag, make sure to run Update before it |
 
 where `ib` is alias to Invoke-Build.
