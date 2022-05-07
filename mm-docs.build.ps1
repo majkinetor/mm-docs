@@ -46,9 +46,9 @@ task Update { $script:aLatestModules = $true }, Build, GetVersions
 # Synopsis: Run interactive session
 task RunShell { docker run -it --rm $ImageFullName sh }
 
-# Synopsis: Publish docker image
+# Synopsis: Publish docker
 task Publish {
-    if (!$aTag) { throw "aTag is required" }
+    if ($aTag -eq 'latest') { throw "aTag is required" }
 
     exec {
         docker tag majkinetor/mm-docs:latest majkinetor/mm-docs:$aTag
