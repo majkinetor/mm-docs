@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
 
-ARG PLANTUML_VERSION=1.2022.5
+ARG PLANTUML_VERSION=1.2022.7
 ARG PLANTUML_DIR=/opt/plantuml
 ARG PLANTUML_BIN=/usr/local/bin/plantuml
 ARG PLANTUML_URL=https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download
