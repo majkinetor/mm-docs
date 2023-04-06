@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
 
-ARG PLANTUML_VERSION=1.2022.8
+ARG PLANTUML_VERSION=1.2023.5
 ARG PLANTUML_DIR=/opt/plantuml
 ARG PLANTUML_BIN=/usr/local/bin/plantuml
 ARG PLANTUML_URL=https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download
@@ -10,11 +10,12 @@ ENV PLANTUML_ENCODING=en_US.UTF-8
 
 RUN apk add -X https://nl.alpinelinux.org/alpine/edge/main -u alpine-keys --allow-untrusted
 
+RUN apk update && apk upgrade # Fix segfault
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories \
     && echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
     && echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
     && echo "http://dl-cdn.alpinelinux.org/alpine/v3.12/main" >> /etc/apk/repositories \
-    && apk update && apk upgrade -U -a
+    && apk update && apk upgrade
 
 RUN apk add python3 python3-dev py3-pip nodejs npm \
     && python3 -m pip install --upgrade pip setuptools wheel \
