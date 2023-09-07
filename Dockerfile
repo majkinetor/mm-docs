@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
 
-ARG PLANTUML_VERSION=1.2023.5
+ARG PLANTUML_VERSION=1.2023.7
 ARG PLANTUML_DIR=/opt/plantuml
 ARG PLANTUML_BIN=/usr/local/bin/plantuml
 ARG PLANTUML_URL=https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download
@@ -18,7 +18,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" > /etc/apk/repositorie
     && apk update && apk upgrade
 
 RUN apk add python3 python3-dev py3-pip nodejs npm \
-    && python3 -m pip install --upgrade pip setuptools wheel \
+    && python3 -m pip install --upgrade pip setuptools wheel --break-system-packages\
     && npm install broken-link-checker -g
 
 RUN apk add libstdc++ chromium harfbuzz nss freetype ttf-freefont font-noto-emoji wqy-zenhei
@@ -46,7 +46,7 @@ RUN set -x \
 
 WORKDIR /docs
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt --break-system-packages
 RUN rm /var/cache/apk/* && rm -rf /docs
 
 WORKDIR /docs/source

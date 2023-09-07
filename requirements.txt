@@ -1,20 +1,20 @@
-mkdocs==1.4.2
-mkdocs-material==9.1.5
-plantuml-markdown==3.8.2
+mkdocs==1.5.2
+mkdocs-material==9.2.8
+plantuml-markdown==3.9.2
 
 markdown-include==0.8.1
 mkdocs-exclude==1.0.2
-mkdocs-macros-plugin==0.7.0
+mkdocs-macros-plugin==1.0.4
 
 mkdocs-pdf-export-plugin==0.5.10
-mkdocs-print-site-plugin==2.3.4
+mkdocs-print-site-plugin==2.3.6
 
+# 2023-06-12
+mkdocs-linkcheck==1.0.6
+mkdocs-literate-nav==0.6.0
+mkdocs-schema-reader==0.11.1
+mkdocs-encryptcontent-plugin==2.5.3
+mkpatcher==1.0.2
 
-
-
-
-
-
-
-
-   
+termynal==0.11.0
+mkdocs-moonstone==0.2.0
