@@ -15,6 +15,25 @@ Enter-Build {
     $script:ImageFullName = if (!$aTag) { $ImageName } else { "${ImageName}:$aTag" }
 }
 
+function Get-PlantUmlVersion {
+    function Get-GitHubReleaseUrl( $GitHubRepositoryUrl, $Pattern='\.exe$') {
+        $latestReleases = "$GitHubRepositoryUrl/releases/latest"
+        $latestPage = Invoke-WebRequest -Uri $latestReleases -UseBasicParsing
+        $latestPage.Content -match '(?<=src=")[^"]+expanded_assets[^"]+' | Out-Null
+        $assetsUrl = $Matches[0]
+        if (!$assetsUrl) { throw "Can't find assets URL" }
+
+        $domain  = $GitHubRepositoryUrl -split '(?<=//.+)/' | Select-Object -First 1
+        $assetsPage = Invoke-WebRequest -Uri $assetsUrl -UseBasicParsing
+        $assetsPage.links | ? href -match $Pattern | Select-Object -expand href | % { $domain + $_ }
+    }
+
+    $GitHubRepositoryUrl = 'https://github.com/plantuml/plantuml'
+    $url = Get-GitHubReleaseUrl $GitHubRepositoryUrl 'plantuml-[0-9.]+\.jar$' | select -Last 1
+    $version = $url -split '-|.jar' | select -First 1 -Skip 1
+    $version
+}
+
 # Synopsis: Build docker image
 task Build {
     if ($aLatestModules) {
@@ -22,8 +41,7 @@ task Build {
         Write-Host "Removing versions from requirements.txt file" -ForegroundColor yellow
         ((Get-Content requirements.txt).Trim() -replace '=.+') + " "*(Get-Random 10) | Set-Content -Encoding Ascii requirements.txt
 
-        $plantuml_version = Invoke-RestMethod "https://chocolatey.org/api/v2/Packages()?`$filter=((Id%20eq%20%27plantuml%27)%20and%20(not%20IsPrerelease))%20and%20IsLatestVersion"
-        $plantuml_version = $plantuml_version.properties.version
+        $plantuml_version = Get-PlantUmlVersion
         Write-Host "Setting latest PlantUML version:" $plantuml_version -ForegroundColor yellow
         (Get-Content Dockerfile) -replace  '(PLANTUML_VERSION)=(.+)', "`$1=$plantuml_version" | Set-Content .\Dockerfile
     }

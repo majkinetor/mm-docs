@@ -1,9 +1,9 @@
 FROM openjdk:8-jre-alpine
 
-ARG PLANTUML_VERSION=1.2023.7
+ARG PLANTUML_VERSION=1.2023.11
 ARG PLANTUML_DIR=/opt/plantuml
 ARG PLANTUML_BIN=/usr/local/bin/plantuml
-ARG PLANTUML_URL=https://sourceforge.net/projects/plantuml/files/plantuml.${PLANTUML_VERSION}.jar/download
+ARG PLANTUML_URL=https://github.com/plantuml/plantuml/releases/download/v${PLANTUML_VERSION}/plantuml-${PLANTUML_VERSION}.jar
 ARG PLANTUML_SCRIPT='#!/bin/sh \njava -jar -Dfile.encoding=$PLANTUML_ENCODING /opt/plantuml/plantuml.jar ${@}\n'
 
 ENV PLANTUML_ENCODING=en_US.UTF-8
