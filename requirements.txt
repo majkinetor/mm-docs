@@ -1,5 +1,5 @@
 mkdocs==1.5.3
-mkdocs-material==9.4.5
+mkdocs-material==9.4.6
 plantuml-markdown==3.9.2
 
 markdown-include==0.8.1
